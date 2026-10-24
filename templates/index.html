@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0a0a1a">
+<title>CritixAI - AI Website Analysis & Competition</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="particles" id="particles"></div>
+
+<!-- Navbar -->
+<nav class="navbar">
+    <a href="#" class="nav-brand" id="navBrandHome" aria-label="CritixAI Home">
+        <span class="logo-text">Critix<span class="highlight">AI</span></span>
+    </a>
+    <ul class="nav-links">
+        <li><a href="#" data-nav="home" class="active">Home</a></li>
+        <li><a href="#" data-nav="modes">Analysis Modes</a></li>
+        <li><a href="#" data-nav="features">Features</a></li>
+        <li><a href="#" data-nav="how-it-works">How It Works</a></li>
+        <li><a href="#" data-nav="history">History</a></li>
+    </ul>
+    <div class="navbar-actions">
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle theme">
+            <span class="theme-icon">🌙</span>
+        </button>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+    <ul>
+        <li><a href="#" data-nav="home">Home</a></li>
+        <li><a href="#" data-nav="modes">Analysis Modes</a></li>
+        <li><a href="#" data-nav="features">Features</a></li>
+        <li><a href="#" data-nav="how-it-works">How It Works</a></li>
+        <li><a href="#" data-nav="history">History</a></li>
+    </ul>
+</div>
+
+<main>
+    <!-- ====== HOME ====== -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-eyebrow">✨ Intelligent Website Analysis</div>
+            <h1 class="hero-title">Understand Websites.<br><span class="gradient-text">Make Smarter Decisions.</span></h1>
+            <p class="hero-subtitle">Analyse a website independently or compare it against a competitor. Get useful insights, discover weaknesses, and make better decisions with CritixAI.</p>
+            <div class="hero-cta">
+                <a href="#" data-nav="modes" class="analyze-btn hero-cta-btn"><span>Choose Your Analysis</span> <span aria-hidden="true">↓</span></a>
+            </div>
+            <div class="hero-highlights">
+                <span>🛡️ Security Insights</span>
+                <span>🤖 AI-Powered Reviews</span>
+                <span>⚔️ Website Comparisons</span>
+            </div>
+        </div>
+        <div class="hero-illustration" aria-hidden="true">
+            <div class="floating-card card-1"><span>🛡️</span> Website Critic</div>
+            <div class="floating-card card-2"><span>⚔️</span> Competition Mode</div>
+            <div class="floating-card card-3"><span>📊</span> Smart Insights</div>
+        </div>
+    </section>
+
+    <!-- ====== MODES ====== -->
+    <section class="modes-section" id="modes">
+        <div class="section-heading">
+            <span class="section-eyebrow">TWO WAYS TO ANALYZE</span>
+            <h2 class="section-title">Choose Your <span class="gradient-text">Mode</span></h2>
+            <p class="section-description">Every website has a story. Choose whether you want to improve one website or compare two.</p>
+        </div>
+        <div class="mode-cards">
+            <article class="mode-card competition-mode-card">
+                <div class="mode-card-top">
+                    <div class="mode-icon competition-icon">⚔️</div>
+                    <span class="mode-badge">COMPARE TWO WEBSITES</span>
+                </div>
+                <h3>Competition Mode</h3>
+                <p class="mode-description">Put two websites head-to-head and discover which performs better across key categories.</p>
+                <ul class="mode-benefits">
+                    <li><span>✓</span> Compare safety and trust</li>
+                    <li><span>✓</span> Compare speed and popularity</li>
+                    <li><span>✓</span> AI-generated competitive insights</li>
+                </ul>
+                <button type="button" class="mode-select-btn" id="selectCompetitionMode">Enter Competition Mode <span>→</span></button>
+            </article>
+            <article class="mode-card critic-mode-card">
+                <div class="mode-card-top">
+                    <div class="mode-icon critic-icon">🔍</div>
+                    <span class="mode-badge">ANALYZE ONE WEBSITE</span>
+                </div>
+                <h3>Website Critic</h3>
+                <p class="mode-description">Get an independent review of any website — security, speed, strengths, and weaknesses.</p>
+                <ul class="mode-benefits">
+                    <li><span>✓</span> Security &amp; trust review</li>
+                    <li><span>✓</span> Speed &amp; popularity signals</li>
+                    <li><span>✓</span> AI-generated analysis report</li>
+                </ul>
+                <button type="button" class="mode-select-btn" id="selectCriticMode">Enter Website Critic <span>→</span></button>
+            </article>
+        </div>
+    </section>
+
+    <!-- ====== CRITIC WORKSPACE ====== -->
+    <section class="analysis-workspace critic-workspace" id="criticWorkspace" hidden>
+        <div class="workspace-container">
+            <button type="button" class="back-btn" id="backToModesFromCritic">← Back to Modes</button>
+            <div class="workspace-heading">
+                <div class="mode-icon critic-icon">🔍</div>
+                <span class="section-eyebrow">INDEPENDENT REVIEW</span>
+                <h2>Website <span class="gradient-text">Critic</span></h2>
+                <p>Enter a URL to generate its analysis report.</p>
+            </div>
+            <div class="search-container">
+                <form class="search-box" id="criticForm">
+                    <span class="search-icon" aria-hidden="true">🔍</span>
+                    <input type="text" id="urlInput" class="search-input" placeholder="e.g. example.com" autocomplete="url" autocapitalize="none" spellcheck="false" required>
+                    <button class="analyze-btn" id="analyzeBtn" type="submit">
+                        <span class="btn-text">Analyze</span>
+                        <span class="btn-loader" id="btnLoader"></span>
+                    </button>
+                </form>
+                <div class="search-error" id="searchError" role="alert"></div>
+                <div class="quick-links">
+                    <span>Try:</span>
+                    <button type="button" class="quick-link" data-url="https://github.com">GitHub</button>
+                    <button type="button" class="quick-link" data-url="https://wikipedia.org">Wikipedia</button>
+                    <button type="button" class="quick-link" data-url="https://stackoverflow.com">StackOverflow</button>
+                    <button type="button" class="quick-link" data-url="https://reddit.com">Reddit</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== COMPETITION WORKSPACE ====== -->
+    <section class="analysis-workspace competition-workspace" id="competitionWorkspace" hidden>
+        <div class="workspace-container">
+            <button type="button" class="back-btn" id="backToModesFromCompetition">← Back to Modes</button>
+            <div class="workspace-heading">
+                <div class="mode-icon competition-icon">⚔️</div>
+                <span class="section-eyebrow">HEAD-TO-HEAD</span>
+                <h2>Competition <span class="gradient-text">Mode</span></h2>
+                <p>Enter two URLs to compare them side by side.</p>
+            </div>
+            <form id="comparisonForm" class="comparison-form">
+                <div class="comparison-inputs">
+                    <div class="comparison-input-card">
+                        <span class="comparison-label">WEBSITE A</span>
+                        <input type="text" id="comparisonUrlA" class="comparison-url-input" placeholder="https://yoursite.com" required>
+                    </div>
+                    <div class="comparison-vs-divider"><span>VS</span></div>
+                    <div class="comparison-input-card">
+                        <span class="comparison-label">WEBSITE B</span>
+                        <input type="text" id="comparisonUrlB" class="comparison-url-input" placeholder="https://competitor.com" required>
+                    </div>
+                </div>
+                <div class="comparison-form-error" id="comparisonFormError" role="alert"></div>
+                <button type="submit" class="analyze-btn comparison-submit-btn" id="compareBtn">
+                    <span class="btn-text">⚔️ Compare Websites</span>
+                    <span class="btn-loader"></span>
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- ====== LOADING OVERLAY ====== -->
+    <div class="loading-overlay" id="loadingOverlay" role="status" aria-live="polite">
+        <div class="loading-content">
+            <div class="loading-spinner"><div class="spinner-ring"></div><div class="spinner-ring"></div><div class="spinner-ring"></div></div>
+            <h3 class="loading-text" id="loadingTitle">Analyzing…</h3>
+            <p class="loading-subtext" id="loadingSubtext">Fetching data…</p>
+            <div class="loading-progress"><div class="progress-bar" id="progressBar"></div></div>
+        </div>
+    </div>
+
+    <!-- ====== CRITIC RESULTS ====== -->
+    <section class="results-section" id="resultsSection" hidden>
+        <div class="results-container">
+            <div class="results-header">
+                <button type="button" class="back-btn" id="backBtn">← Back</button>
+                <h2 class="results-title">Website Critic Report</h2>
+                <div class="results-actions">
+                    <button type="button" class="action-btn" id="copyResultsBtn">📋 Copy</button>
+                </div>
+            </div>
+
+            <div class="result-card overview-card">
+                <div class="card-header">
+                    <div class="website-info">
+                        <img class="website-favicon" id="websiteFavicon" src="" alt="">
+                        <div>
+                            <h3 class="website-name" id="websiteName"></h3>
+                            <a class="website-url" id="websiteUrl" href="" target="_blank" rel="noopener noreferrer"></a>
+                        </div>
+                    </div>
+                    <div class="overall-score">
+                        <div class="score-circle">
+                            <svg viewBox="0 0 100 100"><circle class="score-bg" cx="50" cy="50" r="45"></circle><circle class="score-fill" id="scoreFill" cx="50" cy="50" r="45"></circle></svg>
+                            <span class="score-value" id="scoreValue">0</span>
+                        </div>
+                        <span class="score-label">Overall</span>
+                    </div>
+                </div>
+                <p class="website-description" id="websiteDescription"></p>
+                <div class="website-tags" id="websiteTags"></div>
+            </div>
+
+            <div class="scores-grid">
+                <div class="score-card"><div class="score-card-icon">🛡️</div><h4>Safety</h4><div class="score-bar-container"><div class="score-bar" id="safetyBar"></div></div><span class="score-number" id="safetyScore">0</span></div>
+                <div class="score-card"><div class="score-card-icon">⭐</div><h4>Trust</h4><div class="score-bar-container"><div class="score-bar" id="trustBar"></div></div><span class="score-number" id="trustScore">0</span></div>
+                <div class="score-card"><div class="score-card-icon">⚡</div><h4>Speed</h4><div class="score-bar-container"><div class="score-bar" id="speedBar"></div></div><span class="score-number" id="speedScore">0</span></div>
+                <div class="score-card"><div class="score-card-icon">📈</div><h4>Popularity</h4><div class="score-bar-container"><div class="score-bar" id="popularityBar"></div></div><span class="score-number" id="popularityScore">0</span></div>
+            </div>
+
+            <div class="pros-cons-grid">
+                <div class="result-card pros-card"><div class="card-title"><span class="card-icon">✅</span><h3>Pros</h3></div><ul class="pros-list" id="prosList"></ul></div>
+                <div class="result-card cons-card"><div class="card-title"><span class="card-icon">❌</span><h3>Cons</h3></div><ul class="cons-list" id="consList"></ul></div>
+            </div>
+
+            <div class="result-card details-card"><div class="card-title"><span class="card-icon">📋</span><h3>Details</h3></div><div class="details-grid" id="detailsGrid"></div></div>
+            <div class="result-card security-card"><div class="card-title"><span class="card-icon">🔒</span><h3>Security</h3></div><div class="security-items" id="securityItems"></div></div>
+
+            <div class="result-card summary-card">
+                <div class="card-title"><span class="card-icon">📝</span><h3>Summary</h3></div>
+                <p class="summary-text" id="summaryText"></p>
+                <div class="verdict" id="verdict"><span class="verdict-icon" id="verdictIcon"></span><span class="verdict-text" id="verdictText"></span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== COMPARISON RESULTS ====== -->
+    <section class="results-section comparison-results-section" id="comparisonResultsSection" hidden>
+        <div class="results-container">
+            <div class="results-header">
+                <button type="button" class="back-btn" id="backFromComparisonResults">← Back</button>
+                <h2 class="results-title">Competition Report</h2>
+            </div>
+
+            <div class="result-card comparison-winner-card">
+                <h2 class="comparison-winner-heading" id="comparisonWinnerHeading">Results</h2>
+                <p class="comparison-winner-summary" id="comparisonWinnerSummary"></p>
+                <div class="comparison-overview-grid">
+                    <article class="comparison-overview-site">
+                        <span class="comparison-label">WEBSITE A</span>
+                        <img class="website-favicon" id="comparisonFaviconA" src="" alt="">
+                        <h3 id="comparisonNameA">A</h3>
+                        <a id="comparisonLinkA" class="website-url" href="" target="_blank" rel="noopener noreferrer"></a>
+                        <div class="comparison-total-score" id="comparisonScoreA">—</div>
+                    </article>
+                    <div class="comparison-center-vs">VS</div>
+                    <article class="comparison-overview-site">
+                        <span class="comparison-label">WEBSITE B</span>
+                        <img class="website-favicon" id="comparisonFaviconB" src="" alt="">
+                        <h3 id="comparisonNameB">B</h3>
+                        <a id="comparisonLinkB" class="website-url" href="" target="_blank" rel="noopener noreferrer"></a>
+                        <div class="comparison-total-score" id="comparisonScoreB">—</div>
+                    </article>
+                </div>
+            </div>
+
+            <div class="result-card"><div class="card-title"><span class="card-icon">📊</span><h3>Category Comparison</h3></div><div id="comparisonCategoryList"></div></div>
+
+            <div class="pros-cons-grid">
+                <div class="result-card"><div class="card-title"><span class="card-icon">🏆</span><h3 id="comparisonStrengthsTitleA">A Strengths</h3></div><ul class="pros-list" id="comparisonStrengthsA"></ul></div>
+                <div class="result-card"><div class="card-title"><span class="card-icon">🏆</span><h3 id="comparisonStrengthsTitleB">B Strengths</h3></div><ul class="pros-list" id="comparisonStrengthsB"></ul></div>
+            </div>
+            <div class="pros-cons-grid">
+                <div class="result-card"><div class="card-title"><span class="card-icon">🔧</span><h3 id="comparisonWeaknessesTitleA">A Improvements</h3></div><ul class="cons-list" id="comparisonWeaknessesA"></ul></div>
+                <div class="result-card"><div class="card-title"><span class="card-icon">🔧</span><h3 id="comparisonWeaknessesTitleB">B Improvements</h3></div><ul class="cons-list" id="comparisonWeaknessesB"></ul></div>
+            </div>
+
+            <div class="result-card"><div class="card-title"><span class="card-icon">🤖</span><h3>AI Insights</h3></div><div id="comparisonAiInsights"></div></div>
+        </div>
+    </section>
+
+    <!-- ====== FEATURES ====== -->
+    <section class="features-section" id="features">
+        <h2 class="section-title">Why Choose <span class="gradient-text">CritixAI</span>?</h2>
+        <div class="features-grid">
+            <article class="feature-card"><div class="feature-icon">🛡️</div><h3>Security Insights</h3><p>Review SSL, headers, and encryption indicators.</p></article>
+            <article class="feature-card"><div class="feature-icon">⚔️</div><h3>Competitor Comparison</h3><p>Compare two websites metric by metric.</p></article>
+            <article class="feature-card"><div class="feature-icon">🤖</div><h3>AI-Powered</h3><p>Turn raw data into actionable recommendations.</p></article>
+        </div>
+    </section>
+
+    <!-- ====== HOW IT WORKS ====== -->
+    <section class="how-it-works" id="how-it-works">
+        <h2 class="section-title">How It <span class="gradient-text">Works</span></h2>
+        <div class="steps-container">
+            <article class="step"><div class="step-number">1</div><div class="step-content"><h3>Choose a Mode</h3><p>Critic or Competition.</p></div></article>
+            <div class="step-connector"></div>
+            <article class="step"><div class="step-number">2</div><div class="step-content"><h3>Analyze</h3><p>CritixAI gathers and evaluates data.</p></div></article>
+            <div class="step-connector"></div>
+            <article class="step"><div class="step-number">3</div><div class="step-content"><h3>Explore</h3><p>Review findings and insights.</p></div></article>
+        </div>
+    </section>
+
+    <!-- ====== HISTORY ====== -->
+    <section class="history-section" id="history">
+        <h2 class="section-title">Analysis <span class="gradient-text">History</span></h2>
+        <div class="history-container" id="historyContainer">
+            <div class="empty-history" id="emptyHistory"><span class="empty-icon">📭</span><p>No analyses yet.</p></div>
+        </div>
+        <button type="button" class="clear-history-btn" id="clearHistoryBtn" style="display:none;">🗑️ Clear History</button>
+    </section>
+</main>
+
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-brand">
+            <span class="logo-text">Critix<span class="highlight">AI</span></span>
+            <p>Understand websites. Make smarter decisions.</p>
+        </div>
+        <div class="footer-copyright"><p>&copy; 2025 CritixAI</p></div>
+    </div>
+</footer>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+<div class="toast-container" id="toastContainer" aria-live="polite"></div>
+</body>
+</html>
